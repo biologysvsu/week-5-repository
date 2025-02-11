@@ -13,3 +13,4 @@
   
 3. Organize your personal folder in the `ocean` disk
    - command to use: `mkdir`, `cp`, or `mv`
+4. Globus connect
