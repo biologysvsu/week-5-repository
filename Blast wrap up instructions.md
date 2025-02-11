@@ -35,7 +35,7 @@ gunzip GCF_000001405.40_GRCh38.p14_cds_from_genomic.fna.gz
 ```
 2. Create a BLAST database from the CDS file:
 ``` bash
-module load blast
+module load BLAST
 makeblastdb -in GCF_000001405.40_GRCh38.p14_cds_from_genomic.fna -dbtype nucl -out cds_db
 ```
 ## Make the protein database
