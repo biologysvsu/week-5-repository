@@ -2,7 +2,7 @@
 
 ## Installing `rsync`
 
-### Windows
+### Windows -- IF YOU HAVE USE MAC SCROLL DOWN
 Windows does not come with `rsync` by default. However, since all of you have Git Bash installed, you can install `rsync` manually for use within Git Bash.
 
 #### Installing `rsync` in MSYS2
@@ -13,7 +13,7 @@ Windows does not come with `rsync` by default. However, since all of you have Gi
 5. (Optional) Open the **MSYS2 UCRT64** terminal from the Start menu.
 6. The MSYS2 looks identical to the git bash terminal.
 7. Update the package list and install `rsync` by running:
-   ```sh
+```sh
    pacman -Syu
    #Here it will ask if you want to proceed with installation, type `Y`
    #Will ask to close the window after installation is finished. Type `Y`
@@ -27,7 +27,34 @@ pacman -S rsync
    ```sh
    rsync --version
    ```
-5. Now you can use `rsync` from the *MSYS2* terminal
+10. Now you need to determine the path where `sync` was installed:
+``` sh
+which rsync
+```
+11. The command above should return the following path, copy it:
+``` sh
+/usr/bin/rsync
+```
+12. Close the MSYS2 terminal.
+13. Open `Git Bash` and type:
+``` sh
+vi  ~/.bashrc
+```
+14. Enter the editor mode by typing `I`
+15. Paste the following command line and exit the editor with `:wq`
+``` bash
+export PATH="/c/msys64/usr/bin:$PATH"
+#Note how path is slightly different to the path I copied before add `/c/msys64` before copied path `/usr/bin/rsync` and remove `/rsync`, then add `:$PATH` at the end.
+```
+16. Apply the changes:
+``` bash
+source ~/.bashrc
+```
+17. Confirm installation on the Git Bash terminal type:
+   ```sh
+   rsync --version
+   ```
+
 
 ### macOS
 `rsync` is pre-installed on macOS. However, you may want to install an updated version using Homebrew:
@@ -37,15 +64,17 @@ brew install rsync
 
 ## Using `rsync` for File Transfers
 
-### Download Files from HPC to Local computer
+### Download Files from HPC to the Downloads folder in your Local computer
 ```sh
-rsync -rltpDvp -e "ssh -l your-psc-username " your-psc-username@data.bridges2.psc.edu:/ocean/projects/agr250001p/jparedesmontero/fastqc_28926143.log ~/Downloads/
+rsync -rltpDvp -e 'ssh -l your-psc-username' data.bridges2.psc.edu:/ocean/projects/agr250001p/your-username/your-file-to-transfer ~/Downloads/
 ```
 - `your-psc-username`: Replace with your actual username
+- `your-file-to-transfer`: Replace with your actual file name
+- ~/Downloads/: Directory path where you want to place the file in your computer
 
 Example:
 ```sh
- rsync -rltpDvp -e "ssh -l jparedesmontero" jparedesmontero@data.bridges2.psc.edu:/ocean/projects/agr250001p/jparedesmontero/fastqc_28926143.log ~/Downloads/```
+rsync -rltpDvp -e "ssh -l jparedesmontero" jparedesmontero@data.bridges2.psc.edu:/ocean/projects/agr250001p/jparedesmontero/fastqc_28926143.log ~/Downloads/```
 
 ### Send Files from Local Machine to HPC
 ```sh
