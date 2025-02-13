@@ -14,4 +14,5 @@
 3. Organize your personal folder in the `ocean` disk
    - command to use: `mkdir`, `cp`, or `mv`
 
-4. The `rsync` and `scp` command to download files to your personal computer.
+4. The `scp` command to download files to your personal computer.
+5. The `Globus Connect` file manager
